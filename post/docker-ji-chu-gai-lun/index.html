@@ -1,0 +1,172 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Docker基础概论 | Gridea</title>
+<link rel="shortcut icon" href="C:/Users/13726/Documents/Gridea/output/favicon.ico?v=1563440888426">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="C:/Users/13726/Documents/Gridea/output/styles/main.css">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="C:/Users/13726/Documents/Gridea/output">
+  <img class="avatar" src="C:/Users/13726/Documents/Gridea/output/images/avatar.png?v=1563440888426" alt="">
+  </a>
+  <h1 class="site-title">
+    Gridea
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="C:/Users/13726/Documents/Gridea/output//index.html" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="C:/Users/13726/Documents/Gridea/output/archives/index.html" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="C:/Users/13726/Documents/Gridea/output/tags/index.html" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="C:/Users/13726/Documents/Gridea/output/post/about/index.html" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Docker基础概论
+            </h2>
+            <div class="post-info">
+              <time class="post-time">
+                · 2019-07-17 ·
+              </time>
+              
+            </div>
+            
+            <div class="post-content">
+              <h1 id="aspnet容器部署">ASP.NET容器部署</h1>
+<hr>
+<p>[TOC]</p>
+<h4 id="容器技术是啥">容器技术是啥</h4>
+<blockquote>
+<p>顾名思义就是把应用封装到集装箱，便于移动与管理，开箱即用，同时也限制容器应用抢占宿主系统的资源，可以理解为实现：
+<img src="C:/Users/13726/Documents/Gridea/output/post-images/1563414273092.jpg" alt=""></p>
+</blockquote>
+<h4 id="容器-vs-虚拟机">容器 vs 虚拟机</h4>
+<p><img src="C:/Users/13726/Documents/Gridea/output/post-images/1563415253891.png" alt=""></p>
+<blockquote>
+<p>相比传统的虚拟化技术，容器技术的架构设计没有了虚拟操作系统和虚拟机监视器这两个层次，大幅减少了应用程序运行带来的额外消耗，容器技术把宿主系统资源共享，做到了资源最大化利用，性能自然接近原生系统</p>
+</blockquote>
+<h4 id="docker-容器技术的一种实现之一">Docker -- 容器技术的一种实现之一</h4>
+<blockquote>
+<p>这里说的Docker无疑就是目前最流行的容器技术实现
+Docker 的实现，主要归结于三大技术：命名空间 ( Namespaces ) 、控制组 ( Control Groups ) 和联合文件系统 ( Union File System )
+命名空间
+<img src="C:/Users/13726/Documents/Gridea/output/post-images/1563417073600.png" alt="">
+在这些编程语言中，命名空间的主要目的就是为了集合相同模块的类，区分不同模块间的同名类,在Docker利用linux的PID Namespace实现容器中隔离程序运行中进程隔离,以隔离隔离进程、网络、文件系统等虚拟资源为目
+控制组
+<img src="C:/Users/13726/Documents/Gridea/output/post-images/1563417624765.png" alt="">
+控制组实现硬件资源的控制与分配，第一对容器对硬件资源调度的控制，第二通过配置可以指定某个容器的分配值 ,已达到容器在隔离环境合理控制，从另一个角度理解为对资源的利用率提升
+某个场景下，由于某应用的bug导致抢占硬件资源过多，其它应用得不到更多的资源分配，最后导致物理服务的崩溃，而这个特性正是对这种风险做到可控制</p>
+</blockquote>
+<h4 id="docker性能以及优点">Docker性能以及优点</h4>
+<p><img src="C:/Users/13726/Documents/Gridea/output/post-images/1563417812266.png" alt=""></p>
+<blockquote>
+<p>1.通过对比，Docker有秒级的启动性能
+2.轻量化的应用体积
+3.可共享和管理
+4.部署和交付的简化，生产力提升</p>
+</blockquote>
+<h4 id="docker的四大概念">Docker的四大概念</h4>
+<p>镜像</p>
+<blockquote>
+<p>镜像好比软件的安装包，可以理解为运行容器的原始文件
+镜像的发行
+一般由应用作者发行，为了共享这个镜像，作者上传到公共的镜像仓库，如Dockerhub，使用者则从公共仓库拉下来运行
+镜像命名
+举个例子：mysql/mysql-server， 镜像有三部分：前缀为组织或个人作者名，后缀则是镜像名（repository），tag部分则为版本号
+容器
+假设镜像好比编程中的类，容器就是实例，容器理解是镜像运行起来的进程空间，容器包括内存，cpu资源，网络，数据信息
+容器周期
+<img src="C:/Users/13726/Documents/Gridea/output/post-images/1563420358718.png" alt="">
+一般容器周期，Created -&gt; runing -&gt; stop -&gt; remove
+网络
+在 Docker 中，实现了强大的网络功能，我们不但能够十分轻松的对每个容器的网络进行配置，还能在容器间建立虚拟网络，将数个容器包裹其中，同时与其他网络环境隔离
+这样做的好吃，在不需要修改配置的情况下，可以自由的迁移代码
+数据卷
+容器被持久化的数据通常被挂载在容器的文件中，其中最主流挂载方式的就是Volumes
+数据卷可以宿主操作系统中挂载目录到容器内,也可以挂载到网络中某个位置，只不过这个挂载的目录由 Docker 进行管理，可以被容器共享，我们只需要指定容器内的目录，不需要关心具体挂载到了在哪里</p>
+</blockquote>
+<h4 id="docker-engine">Docker Engine</h4>
+<h5 id="docker-daemon">docker daemon</h5>
+<p><img src="C:/Users/13726/Documents/Gridea/output/post-images/1563421698769.png" alt=""></p>
+<blockquote>
+<p>所有我们通常认为的 Docker 所能提供的容器管理、应用编排、镜像分发等功能，都集中在了 docker daemon 中，而我们之前所提到的镜像模块、容器模块、数据卷模块和网络模块也都实现在其中。在操作系统里，docker daemon 通常以服务的形式运行以便静默的提供这些功能，所以我们也通常称之为 Docker 服务</p>
+</blockquote>
+<h5 id="docker-cli">docker CLI</h5>
+<p><img src="C:/Users/13726/Documents/Gridea/output/post-images/1563421811789.png" alt=""></p>
+<blockquote>
+<p>docker CLI的作用是提供用户与Docker Daemon交互的接口，就像Redis-CLI之于Redis-Server一样</p>
+</blockquote>
+
+            </div>
+          </article>
+        </div>
+
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="C:/Users/13726/Documents/Gridea/output/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>
